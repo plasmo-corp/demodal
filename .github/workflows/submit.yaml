@@ -1,0 +1,16 @@
+name: "submit"
+on: 
+  workflow_dispatch:
+
+jobs:
+  build: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Package extension
+        run: |
+          mkdir build
+          sh ./run package
+      - uses: plasmo-corp/bpp@v0.0.0
+        with:
+          keys: ${{ secrets.SUBMIT_KEYS }}
